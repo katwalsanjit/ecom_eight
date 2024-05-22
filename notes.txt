@@ -1,0 +1,23 @@
+#one
+- install and setup the virtual host in linux till 10 min
+- permission
+    sudo chmod -R 777 storage
+- mailtrap setup
+
+
+// required packages
+- composer require laravel/ui
+- composer require laravelcollective/html
+- composer require intervention/image
+- php artisan vendor:publish (type 5 to pulish the image)
+
+
+- UI creation
+php artisan ui:auth
+
+
+
+-seeder part (21)
+php artisan make:seeder UsersTableSeeder
+
+- till 45 min ma RBC (ROle balel controller) is done
