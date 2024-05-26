@@ -120,13 +120,26 @@
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>
+          {{ auth()->user()->name}}
+          @if(auth()->user()->userInfo != null && auth()->user()->userInfo->image != null && file_exists(public_path().'/uploads/user/'.auth()->user()->userInfo->image))
+          <img src="{{ asset('uploads/user.'.auth()->user()->userInfo->image)}}" alt="image">
+          @else
+            <img src="{{ asset('assets/admin/dist/img/avatar.png')}}"  width="30"/>
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">Logout</a>
+          <a href="#" class="dropdown-item"><i class="fa fa-power-off"></i>
+            Logout</a>
           <div class="dropdown-divider"></div>
 
-          <a href="#" class="dropdown-item">Setting
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-user"></i>
+            Profile</a>
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-key"></i>
+            Change Password
           </a>
           <div class="dropdown-divider"></div>
           
