@@ -128,8 +128,10 @@
           @endif
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item"><i class="fa fa-power-off"></i>
+          <a href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logoutform').submit()" class="dropdown-item"><i class="fa fa-power-off"></i>
             Logout</a>
+            {{ Form::open(['url' => route('logout'), 'id' => 'logoutform'])}}
+            {{ Form::close() }}
           <div class="dropdown-divider"></div>
 
           <a href="#" class="dropdown-item">
