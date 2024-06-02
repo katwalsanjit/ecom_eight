@@ -21,3 +21,6 @@ php artisan ui:auth
 php artisan make:seeder UsersTableSeeder
 
 - till 45 min ma RBC (ROle balel controller) is done
+
+
+#two-------------------------------------------------------------------
