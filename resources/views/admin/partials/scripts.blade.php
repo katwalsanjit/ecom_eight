@@ -21,5 +21,14 @@
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="assets/admin/dist/js/pages/dashboard.js"></script>
+
+<script>
+  $(document).on('click', '.edit-profile', function(e){
+    e.preventDefault();
+    $('#editProfile').modal('show');
+  })
+  </script>
+
+@yield('scripts')
 </body>
 </html>

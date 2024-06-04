@@ -134,7 +134,7 @@
             {{ Form::close() }}
           <div class="dropdown-divider"></div>
 
-          <a href="#" class="dropdown-item">
+          <a href="javascript:;" class="edit-profile dropdown-item">
             <i class="fa fa-user"></i>
             Profile</a>
           <div class="dropdown-divider"></div>
@@ -161,3 +161,70 @@
     </ul>
   </nav>
   <!-- /.navbar -->
+
+<!-- Model for user -->
+<div class="modal" tabindex="-1" id="editProfile" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update User Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      {{ Form::open(['url' => route('update-profile', auth()->user()->id), 'files'=>true]) }}
+            <div class="modal-body">
+                  <div class="form-group row">
+                    {{ Form::label('name', 'Name: ', ['class' => 'col-sm-3'])}}
+                    <div class="col-sm-9">
+                      {{ Form::text('name', auth()->user()->name, ['class' => 'form-control form-control-sm', 'required'=>true, 'id'=>'name', 'placeholder'=>'Enter Your Name']) }}
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    {{ Form::label('phone', 'Phone: ', ['class' => 'col-sm-3'])}}
+                    <div class="col-sm-9">
+                      {{ Form::tel('phone', (auth()->user()->userInfo != null) ? auth()->user()->userInfo->phone : null, ['class' => 'form-control form-control-sm', 'required'=>false, 'id'=>'phone', 'placeholder'=>'Enter Your Phone']) }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    {{ Form::label('address', 'Address: ', ['class' => 'col-sm-3'])}}
+                    <div class="col-sm-9">
+                      {{ Form::textarea('address', (auth()->user()->userInfo != null) ? auth()->user()->userInfo->address : null, ['class' => 'form-control form-control-sm', 'required'=>false, 'id'=>'address', 'placeholder'=>'Enter Your Address', 'style' => 'resize:none', 'rows'=>5]) }}
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    {{ Form::label('image', 'Image: ', ['class' => 'col-sm-3'])}}
+                    <div class="col-sm-3">
+                      {{ Form::file('image', ['class' => 'form-control form-control-sm','required'=>false, 'id'=>'image']) }}
+                    </div>
+                    <div class="col-sm-2">
+                      @if(auth()->user()->userInfo != null && auth()->user()->userInfo->image != null && file_exists(public_path().'/uploads/user/'.auth()->user()->userInfo->image))
+                      <img src="{{ asset('uploads/user.'.auth()->user()->userInfo->image)}}" alt="image" class="img img-fluid img-circle">
+                      @else
+                        <img src="{{ asset('assets/admin/dist/img/avatar.png')}}"  width="30" class="img img-fluid img-circle"/>
+                      @endif
+                    </div>
+                  </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" data-dismiss="modal">
+                <i class="fa fa-redo"></i>
+                Reset
+              </button>
+              <button type="submit" class="btn btn-success">
+                <fa class="fa-paper-plane"></fa>
+                Save changes
+              </button>
+            </div>
+          
+        {{ Form::close() }}  
+
+    </div>
+  </div>
+</div>

@@ -24,6 +24,11 @@ Route::group(['namespace' => "App\Http\Controllers"], function(){
 
     Route::get('/home', 'HomeController@index', 'index')->name('home');
 
+    Route::group(['middleware' => 'auth'], function(){
+        Route::post('/user/{id}', "UserController@update")->name('update-profile');
+    });
+
+
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(){
         Route::get('/', 'HomeController@admin')->name('admin');
     });
